@@ -12,6 +12,10 @@ const HabitSchema = new mongoose.Schema({
   tasks: [
     {
       title: String,
+      timeSlot: {
+        type: String,   // Stored as "HH:MM" (24-h), e.g.  "09:30"
+        default: '',
+      },
       progress: {
         type: Number,
         default: 0,

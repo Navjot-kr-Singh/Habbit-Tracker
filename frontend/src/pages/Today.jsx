@@ -1,7 +1,28 @@
 import { useState } from 'react';
 import { useHabit } from '../context/HabitContext';
 import TaskCard from '../components/TaskCard';
-import { Plus, CalendarDays, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Plus, CalendarDays, ChevronLeft, ChevronRight, Clock } from 'lucide-react';
+
+// Convert "HH:MM" to "h:MM AM/PM" display format
+export function formatTimeAMPM(time24) {
+  if (!time24) return null;
+  const [hStr, mStr] = time24.split(':');
+  const h = parseInt(hStr, 10);
+  const m = parseInt(mStr, 10);
+  const period = h >= 12 ? 'PM' : 'AM';
+  const displayH = h % 12 === 0 ? 12 : h % 12;
+  return `${displayH}:${String(m).padStart(2, '0')} ${period}`;
+}
+
+// Sort tasks by timeSlot ascending; tasks with no time go last
+function sortByTime(tasks) {
+  return [...tasks].sort((a, b) => {
+    if (!a.timeSlot && !b.timeSlot) return 0;
+    if (!a.timeSlot) return 1;
+    if (!b.timeSlot) return -1;
+    return a.timeSlot.localeCompare(b.timeSlot);
+  });
+}
 
 const getLocalToday = () => new Date().toLocaleDateString('en-CA');
 
@@ -33,6 +54,7 @@ function getJourneyDay(dateStr) {
 export default function Today() {
   const { currentHabit, selectedDate, setSelectedDate, updateTasksForDate, dateLoading, loading } = useHabit();
   const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [newTaskTime, setNewTaskTime]   = useState('');
 
   const today = getLocalToday();
 
@@ -67,7 +89,9 @@ export default function Today() {
   const handleUpdate = (index, updatedTask) => {
     const newTasks = [...tasks];
     newTasks[index] = updatedTask;
-    updateTasksForDate(newTasks, selectedDate);
+    // Re-sort after any edit so time changes are reflected immediately
+    const sorted = sortByTime(newTasks);
+    updateTasksForDate(sorted, selectedDate);
   };
 
   const handleDelete = (index) => {
@@ -78,9 +102,16 @@ export default function Today() {
   const handleAddTask = (e) => {
     e.preventDefault();
     if (!newTaskTitle.trim()) return;
-    const newTask = { title: newTaskTitle.trim(), progress: 0, completed: false };
-    updateTasksForDate([...tasks, newTask], selectedDate);
+    const newTask = {
+      title:    newTaskTitle.trim(),
+      timeSlot: newTaskTime || '',
+      progress: 0,
+      completed: false,
+    };
+    const sorted = sortByTime([...tasks, newTask]);
+    updateTasksForDate(sorted, selectedDate);
     setNewTaskTitle('');
+    setNewTaskTime('');
   };
 
   return (
@@ -184,7 +215,7 @@ export default function Today() {
       ) : (
         <>
           {/* Add task form */}
-          <form onSubmit={handleAddTask} className="mb-8 flex gap-3">
+          <form onSubmit={handleAddTask} className="mb-8 flex flex-col sm:flex-row gap-3">
             <input
               type="text"
               value={newTaskTitle}
@@ -192,6 +223,27 @@ export default function Today() {
               placeholder={selectedDate === today ? "What do you want to achieve today?" : `Add a task for ${selectedDate}...`}
               className="flex-1 bg-slate-800 border border-slate-700 text-white px-5 py-3 rounded-xl focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all shadow-lg"
             />
+
+            {/* Time Slot Picker */}
+            <div className="relative flex items-center">
+              <Clock size={16} className="absolute left-3 text-slate-400 pointer-events-none" />
+              <input
+                type="time"
+                value={newTaskTime}
+                onChange={(e) => setNewTaskTime(e.target.value)}
+                className="bg-slate-800 border border-slate-700 text-white pl-9 pr-3 py-3 rounded-xl focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition-all shadow-lg cursor-pointer w-full sm:w-auto"
+                title="Select time slot (optional)"
+              />
+              {newTaskTime && (
+                <button
+                  type="button"
+                  onClick={() => setNewTaskTime('')}
+                  className="absolute right-2 text-slate-500 hover:text-slate-300 text-xs transition-colors"
+                  title="Clear time"
+                >✕</button>
+              )}
+            </div>
+
             <button
               type="submit"
               disabled={!newTaskTitle.trim()}
@@ -210,15 +262,18 @@ export default function Today() {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {tasks.map((task, index) => (
-                <TaskCard
-                  key={index}
-                  index={index}
-                  task={task}
-                  onUpdate={handleUpdate}
-                  onDelete={handleDelete}
-                />
-              ))}
+              {sortByTime(tasks).map((task) => {
+                const origIdx = tasks.indexOf(task);
+                return (
+                  <TaskCard
+                    key={`${origIdx}-${task.timeSlot}`}
+                    index={origIdx}
+                    task={task}
+                    onUpdate={handleUpdate}
+                    onDelete={handleDelete}
+                  />
+                );
+              })}
             </div>
           )}
         </>
