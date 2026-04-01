@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slate-900: #0f172a;
+  --color-green-500: #22c55e;
+}
+
+body {
+  @apply bg-slate-900 text-white min-h-screen bg-fixed font-sans;
+}
+
+/* Base custom utility for hiding scrollbars on some components */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* React Calendar Heatmap Dark Theme Overrides */
+/* GitHub style 0-100% colors */
+.react-calendar-heatmap text {
+  font-size: 10px;
+  fill: #94a3b8; /* slate-400 */
+}
+
+.react-calendar-heatmap rect {
+  rx: 3px;
+  ry: 3px;
+}
+
+.react-calendar-heatmap .color-empty { fill: #1e293b; /* slate-800 */ }
+.react-calendar-heatmap .color-scale-1 { fill: #14532d; /* green-900 */ }
+.react-calendar-heatmap .color-scale-2 { fill: #166534; /* green-800 */ }
+.react-calendar-heatmap .color-scale-3 { fill: #15803d; /* green-700 */ }
+.react-calendar-heatmap .color-scale-4 { fill: #16a34a; /* green-600 */ }
+.react-calendar-heatmap .color-scale-5 { fill: #22c55e; /* green-500 */ }
+
+.react-calendar-heatmap rect:hover {
+  stroke: #fff;
+  stroke-width: 1px;
+}
