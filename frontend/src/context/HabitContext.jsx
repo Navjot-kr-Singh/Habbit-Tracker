@@ -10,12 +10,15 @@ const getLocalToday = () => new Date().toLocaleDateString('en-CA');
 
 // Default tasks shown locally when a day has no saved record yet
 const DEFAULT_TASKS = [
-  { title: "DSA Practice",   timeSlot: '', progress: 0, completed: false },
-  { title: "Web Development",timeSlot: '', progress: 0, completed: false },
-  { title: "Java Practice",  timeSlot: '', progress: 0, completed: false },
-  { title: "Core Subjects",  timeSlot: '', progress: 0, completed: false },
-  { title: "AI/ML",          timeSlot: '', progress: 0, completed: false },
-  { title: "Revision",       timeSlot: '', progress: 0, completed: false },
+  { title: "Wake Up",              timeSlot: '05:45', progress: 0, completed: false },
+  { title: "WEB-DEV",              timeSlot: '06:00', progress: 0, completed: false },
+  { title: "DevOps",               timeSlot: '08:00', progress: 0, completed: false },
+  { title: "AI/ML",                timeSlot: '09:00', progress: 0, completed: false },
+  { title: "System Design--LLD",   timeSlot: '10:00', progress: 0, completed: false },
+  { title: "OOPS + CORE-Subject",  timeSlot: '11:00', progress: 0, completed: false },
+  { title: "APTITUDE",             timeSlot: '13:00', progress: 0, completed: false },
+  { title: "Java-Dev",             timeSlot: '17:00', progress: 0, completed: false },
+  { title: "DSA",                  timeSlot: '19:00', progress: 0, completed: false },
 ];
 
 export const HabitProvider = ({ children }) => {

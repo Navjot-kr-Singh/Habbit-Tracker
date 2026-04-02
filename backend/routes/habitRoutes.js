@@ -4,12 +4,15 @@ const Habit = require('../models/Habit');
 const { requireAuth } = require('../middleware/authMiddleware');
 
 const defaultTasks = [
-  { title: "DSA Practice", progress: 0, completed: false },
-  { title: "Web Development", progress: 0, completed: false },
-  { title: "Java Practice", progress: 0, completed: false },
-  { title: "Core Subjects", progress: 0, completed: false },
-  { title: "AI/ML", progress: 0, completed: false },
-  { title: "Revision", progress: 0, completed: false }
+  { title: "Wake Up", timeSlot: "05:45", progress: 0, completed: false },
+  { title: "WEB-DEV", timeSlot: "06:00", progress: 0, completed: false },
+  { title: "DevOps", timeSlot: "08:00", progress: 0, completed: false },
+  { title: "AI/ML", timeSlot: "09:00", progress: 0, completed: false },
+  { title: "System Design--LLD", timeSlot: "10:00", progress: 0, completed: false },
+  { title: "OOPS + CORE-Subject", timeSlot: "11:00", progress: 0, completed: false },
+  { title: "APTITUDE", timeSlot: "13:00", progress: 0, completed: false },
+  { title: "Java-Dev", timeSlot: "17:00", progress: 0, completed: false },
+  { title: "DSA", timeSlot: "19:00", progress: 0, completed: false }
 ];
 
 // Get today's date formatted as YYYY-MM-DD in IST
