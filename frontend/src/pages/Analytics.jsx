@@ -1,5 +1,6 @@
 import { useHabit } from '../context/HabitContext';
 import ProgressChart from '../components/ProgressChart';
+import RevisionSection from '../components/RevisionSection';
 
 export default function Analytics() {
   const { history, loading } = useHabit();
@@ -13,7 +14,7 @@ export default function Analytics() {
   }
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
       <header className="mb-8">
         <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400 mb-2">
           Your Performance Insights
@@ -24,6 +25,8 @@ export default function Analytics() {
       </header>
 
       <ProgressChart history={history} />
+      
+      <RevisionSection />
     </div>
   );
 }

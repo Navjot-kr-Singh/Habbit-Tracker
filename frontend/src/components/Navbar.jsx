@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { UserButton } from '@clerk/clerk-react';
 import { CheckCircle2, TrendingUp, Calendar, Flame } from 'lucide-react';
+import NotificationBell from './NotificationBell';
 
 export default function Navbar() {
   const location = useLocation();
@@ -45,6 +46,7 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4 shrink-0">
+          <NotificationBell />
           <UserButton
             appearance={{
               elements: {

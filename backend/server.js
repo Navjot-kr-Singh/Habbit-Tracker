@@ -12,6 +12,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/habits', habitRoutes);
+app.use('/api/learning', require('./routes/learningRoutes'));
 
 // Basic route for ping checking
 app.get('/api', (req, res) => {

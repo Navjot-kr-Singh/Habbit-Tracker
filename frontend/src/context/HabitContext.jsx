@@ -29,6 +29,8 @@ export const HabitProvider = ({ children }) => {
   const [isNewDay, setIsNewDay]           = useState(false);  // true = no DB record yet
   const [history, setHistory]             = useState([]);
   const [journey, setJourney]             = useState([]);
+  const [learningSessions, setLearningSessions] = useState([]);
+  const [todayRevisions, setTodayRevisions] = useState([]);
   const [loading, setLoading]             = useState(true);
   const [dateLoading, setDateLoading]     = useState(false);
 
@@ -81,6 +83,39 @@ export const HabitProvider = ({ children }) => {
     }
   }, [getConfig]);
 
+  const fetchLearningSessions = useCallback(async () => {
+    try {
+      const config = await getConfig();
+      const res = await api.get('/learning', config);
+      setLearningSessions(res.data);
+    } catch (error) {
+      console.error('Error fetching learning sessions', error);
+    }
+  }, [getConfig]);
+
+  const fetchTodayRevisions = useCallback(async () => {
+    try {
+      const config = await getConfig();
+      const res = await api.get('/learning/today-revisions', config);
+      setTodayRevisions(res.data);
+    } catch (error) {
+      console.error('Error fetching today revisions', error);
+    }
+  }, [getConfig]);
+
+  const addLearningSession = async (learningData) => {
+    try {
+      const config = await getConfig();
+      const res = await api.post('/learning', learningData, config);
+      setLearningSessions(prev => [res.data, ...prev]);
+      fetchTodayRevisions(); // Refresh today's revisions in case something was added for today
+      return res.data;
+    } catch (error) {
+      console.error('Error adding learning session', error);
+      throw error;
+    }
+  };
+
   // Save tasks — always writes to DB (creates record on first save)
   const updateTasksForDate = async (tasks, date) => {
     const targetDate = date || selectedDate;
@@ -115,6 +150,8 @@ export const HabitProvider = ({ children }) => {
         fetchByDate(selectedDate),
         fetchHistory(),
         fetchJourney(),
+        fetchLearningSessions(),
+        fetchTodayRevisions(),
       ]).finally(() => setLoading(false));
     } else {
       setCurrentHabit(null);
@@ -163,9 +200,11 @@ export const HabitProvider = ({ children }) => {
       currentHabit,
       isNewDay,
       history, journey,
+      learningSessions, todayRevisions,
       loading, dateLoading,
       updateTasksForDate,
       fetchHistory, fetchJourney,
+      addLearningSession, fetchLearningSessions, fetchTodayRevisions
     }}>
       {children}
     </HabitContext.Provider>
