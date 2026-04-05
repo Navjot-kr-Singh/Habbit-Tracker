@@ -2,7 +2,7 @@ import { useHabit } from '../context/HabitContext';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle2, Circle, Flame, Lock } from 'lucide-react';
 
-const JOURNEY_START = '2026-04-01';
+const JOURNEY_START = '2026-04-06';
 const JOURNEY_DAYS  = 100;
 const JOURNEY_END_DATE = (() => {
   const d = new Date(JOURNEY_START + 'T00:00:00');
@@ -99,7 +99,7 @@ export default function JourneyPage() {
             🔥 100-Day Journey
           </h1>
           <p className="text-slate-400">
-            Apr 1 → Jul 9, 2026 &nbsp;·&nbsp; Click any past day to view or edit. Future days are locked.
+            Apr 6 → Jul 14, 2026 &nbsp;·&nbsp; Click any past day to view or edit. Future days are locked.
           </p>
         </div>
         <div className="flex gap-4">

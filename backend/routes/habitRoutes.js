@@ -114,8 +114,8 @@ router.get('/history', async (req, res) => {
   }
 });
 
-// Journey constants — 100 days starting April 1 2026
-const JOURNEY_START = '2026-04-01';
+// Journey constants — 100 days starting April 6 2026
+const JOURNEY_START = '2026-04-06';
 const JOURNEY_DAYS  = 100;
 
 // GET /habits/journey — 100-day grid from JOURNEY_START; fills gaps with placeholders
