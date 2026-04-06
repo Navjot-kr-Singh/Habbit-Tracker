@@ -5,6 +5,7 @@ import Today from './pages/Today';
 import Tracker from './pages/Tracker';
 import Analytics from './pages/Analytics';
 import Journey from './pages/Journey';
+import Plan from './pages/Plan';
 import { HabitProvider } from './context/HabitContext';
 
 // Protected Layout
@@ -42,6 +43,7 @@ function App() {
         />
 
         <Route path="/" element={<ProtectedLayout><Today /></ProtectedLayout>} />
+        <Route path="/plan" element={<ProtectedLayout><Plan /></ProtectedLayout>} />
         <Route path="/journey" element={<ProtectedLayout><Journey /></ProtectedLayout>} />
         <Route path="/tracker" element={<ProtectedLayout><Tracker /></ProtectedLayout>} />
         <Route path="/analytics" element={<ProtectedLayout><Analytics /></ProtectedLayout>} />

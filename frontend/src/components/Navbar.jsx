@@ -8,6 +8,7 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Daily Dashboard", path: '/', icon: <CheckCircle2 size={18} /> },
+    { name: 'Plan', path: '/plan', icon: <Calendar size={18} /> },
     { name: '100-Day Journey', path: '/journey', icon: <Flame size={18} /> },
     { name: 'Habit Tracker', path: '/tracker', icon: <Calendar size={18} /> },
     { name: 'Analytics', path: '/analytics', icon: <TrendingUp size={18} /> },
