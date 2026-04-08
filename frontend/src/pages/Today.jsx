@@ -40,10 +40,10 @@ function formatDateLabel(dateStr) {
   });
 }
 
-const JOURNEY_START = '2026-04-06';
+const JOURNEY_START = '2026-04-09';
 const JOURNEY_DAYS  = 100;
 
-// Calculate the journey day number (1–100) from April 6 2026
+// Calculate the journey day number (1–100) from April 9 2026
 function getJourneyDay(dateStr) {
   const start = new Date(JOURNEY_START + 'T00:00:00');
   const target = new Date(dateStr + 'T00:00:00');

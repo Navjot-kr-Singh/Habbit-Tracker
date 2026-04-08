@@ -4,15 +4,15 @@ const Habit = require('../models/Habit');
 const { requireAuth } = require('../middleware/authMiddleware');
 
 const defaultTasks = [
-  { title: "Wake Up", timeSlot: "05:45", progress: 0, completed: false },
-  { title: "WEB-DEV", timeSlot: "06:00", progress: 0, completed: false },
-  { title: "DevOps", timeSlot: "08:00", progress: 0, completed: false },
-  { title: "AI/ML", timeSlot: "09:00", progress: 0, completed: false },
-  { title: "System Design--LLD", timeSlot: "10:00", progress: 0, completed: false },
-  { title: "OOPS + CORE-Subject", timeSlot: "11:00", progress: 0, completed: false },
-  { title: "APTITUDE", timeSlot: "13:00", progress: 0, completed: false },
-  { title: "Java-Dev", timeSlot: "17:00", progress: 0, completed: false },
-  { title: "DSA", timeSlot: "19:00", progress: 0, completed: false }
+  { title: "Wake Up", timeSlot: "", progress: 0, completed: false },
+  { title: "WEB-DEV", timeSlot: "", progress: 0, completed: false },
+  { title: "DevOps", timeSlot: "", progress: 0, completed: false },
+  { title: "AI/ML", timeSlot: "", progress: 0, completed: false },
+  { title: "System Design--LLD", timeSlot: "", progress: 0, completed: false },
+  { title: "OOPS + CORE-Subject", timeSlot: "", progress: 0, completed: false },
+  { title: "APTITUDE", timeSlot: "", progress: 0, completed: false },
+  { title: "Java-Dev", timeSlot: "", progress: 0, completed: false },
+  { title: "DSA", timeSlot: "", progress: 0, completed: false }
 ];
 
 // Get today's date formatted as YYYY-MM-DD in IST
@@ -114,8 +114,8 @@ router.get('/history', async (req, res) => {
   }
 });
 
-// Journey constants — 100 days starting April 6 2026
-const JOURNEY_START = '2026-04-06';
+// Journey constants — 100 days starting April 9 2026
+const JOURNEY_START = '2026-04-09';
 const JOURNEY_DAYS  = 100;
 
 // GET /habits/journey — 100-day grid from JOURNEY_START; fills gaps with placeholders
