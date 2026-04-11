@@ -40,7 +40,7 @@ export default function RevisionSection() {
         originalDate: session.date,
         hourRange: session.hourRange
       }))
-  ).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 5);
+  ).sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
     <div className="mt-12 space-y-8">
@@ -132,7 +132,7 @@ export default function RevisionSection() {
             Upcoming Revisions
           </h3>
 
-          <div className="space-y-3">
+          <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
             {upcomingRevisions.length > 0 ? (
               upcomingRevisions.map((rev, idx) => (
                 <div 
