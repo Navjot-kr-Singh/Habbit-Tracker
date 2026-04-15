@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 // ─── Date range: Apr 6 → Dec 31, 2026 ────────────────────────────────────────
-const JOURNEY_START = new Date('2026-04-11T00:00:00');
+const JOURNEY_START = new Date('2026-04-16T00:00:00');
 const JOURNEY_END   = new Date('2026-12-31T00:00:00');
 const JOURNEY_DAYS  = Math.floor((JOURNEY_END - JOURNEY_START) / 86400000) + 1; // 272
 

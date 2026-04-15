@@ -2,7 +2,7 @@ import { useHabit } from '../context/HabitContext';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle2, Circle, Flame, Lock } from 'lucide-react';
 
-const JOURNEY_START = '2026-04-11';
+const JOURNEY_START = '2026-04-16';
 const JOURNEY_DAYS  = 100;
 const JOURNEY_END_DATE = (() => {
   const d = new Date(JOURNEY_START + 'T00:00:00');

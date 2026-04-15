@@ -4,7 +4,7 @@ import {
   ResponsiveContainer, ReferenceLine, Cell
 } from 'recharts';
 
-const JOURNEY_START = new Date('2026-04-11T00:00:00');
+const JOURNEY_START = new Date('2026-04-16T00:00:00');
 const JOURNEY_DAYS  = 100;
 
 // Build the full 100-day grid: Day 1 (Apr 6) → Day 100 (Jul 14)
