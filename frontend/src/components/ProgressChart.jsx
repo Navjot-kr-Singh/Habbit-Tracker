@@ -4,10 +4,10 @@ import {
   ResponsiveContainer, ReferenceLine, Cell
 } from 'recharts';
 
-const JOURNEY_START = new Date('2026-04-16T00:00:00');
+const JOURNEY_START = new Date('2026-04-20T00:00:00');
 const JOURNEY_DAYS  = 100;
 
-// Build the full 100-day grid: Day 1 (Apr 6) → Day 100 (Jul 14)
+// Build the full 100-day grid: Day 1 (Apr 20) → Day 100 (Jul 28)
 // Days with no recorded data show as null so the line has gaps
 function buildJourneyLineData(history) {
   const dataMap = {};
@@ -103,7 +103,7 @@ export default function ProgressChart({ history }) {
               100-Day Progress Journey
             </h3>
             <p className="text-slate-500 text-xs mt-1">
-              Apr 11 (Day 1) → Jul 19, 2026 (Day 100) &nbsp;·&nbsp;
+              Apr 20 (Day 1) → Jul 28, 2026 (Day 100) &nbsp;·&nbsp;
               <span className="text-green-400 font-medium">{daysLogged} days logged</span>
             </p>
           </div>
