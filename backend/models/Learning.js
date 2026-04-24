@@ -17,6 +17,11 @@ const LearningSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    enum: ['DSA', 'OOPS', 'CORE-Subject', 'DevOps', 'AI/ML', 'System Design', 'WEB-DEV'],
+    default: 'DSA',
+  },
   revisionDates: [
     {
       date: String, // "YYYY-MM-DD"

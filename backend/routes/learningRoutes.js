@@ -6,9 +6,9 @@ const { requireAuth } = require('../middleware/authMiddleware');
 // Apply auth middleware to all routes
 router.use(requireAuth);
 
-// Calculate revision dates using Day 1, 3, 6 (Ebbinghaus Forgetting Curve)
+// Calculate revision dates using Day 1, 3, 7 (Ebbinghaus Forgetting Curve)
 const calculateRevDates = (startDate) => {
-  const dates = [1, 3, 6];
+  const dates = [1, 3, 7];
   return dates.map(days => {
     const d = new Date(startDate);
     d.setDate(d.getDate() + days);
@@ -19,7 +19,7 @@ const calculateRevDates = (startDate) => {
 // @route   POST /api/learning
 // @desc    Add a learning session and schedule revisions
 router.post('/', async (req, res) => {
-  const { date, hourRange, topic } = req.body;
+  const { date, hourRange, topic, category } = req.body;
   const userId = req.auth.userId;
 
   try {
@@ -35,6 +35,7 @@ router.post('/', async (req, res) => {
       date,
       hourRange,
       topic,
+      category: category || 'DSA',
       revisionDates
     });
 
@@ -75,6 +76,7 @@ router.get('/today-revisions', async (req, res) => {
       topic: l.topic,
       hourRange: l.hourRange,
       originalDate: l.date,
+      category: l.category || 'DSA',
       revisionType: l.revisionDates.find(rd => rd.date === today)?.type
     }));
 

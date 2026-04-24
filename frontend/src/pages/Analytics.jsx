@@ -1,6 +1,5 @@
 import { useHabit } from '../context/HabitContext';
 import ProgressChart from '../components/ProgressChart';
-import RevisionSection from '../components/RevisionSection';
 
 export default function Analytics() {
   const { history, loading } = useHabit();
@@ -26,7 +25,6 @@ export default function Analytics() {
 
       <ProgressChart history={history} />
       
-      <RevisionSection />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 
-// ─── Date range: Apr 6 → Dec 31, 2026 ────────────────────────────────────────
-const JOURNEY_START = new Date('2026-04-20T00:00:00');
+// ─── Date range: Apr 25 → Dec 31, 2026 ────────────────────────────────────────
+const JOURNEY_START = new Date('2026-04-25T00:00:00');
 const JOURNEY_END   = new Date('2026-12-31T00:00:00');
 const JOURNEY_DAYS  = Math.floor((JOURNEY_END - JOURNEY_START) / 86400000) + 1; // 272
 
@@ -103,7 +103,7 @@ export default function Heatmap({ history }) {
         </h3>
         <span className="text-slate-400 font-bold text-lg tracking-wider">2026</span>
       </div>
-      <p className="text-slate-500 text-xs mb-5">Apr 20 → Dec 31, 2026 · Hover any day for details</p>
+      <p className="text-slate-500 text-xs mb-5">Apr 25 → Dec 31, 2026 · Hover any day for details</p>
 
       {/* Grid */}
       <div ref={containerRef} style={{ width: '100%', userSelect: 'none' }}>
